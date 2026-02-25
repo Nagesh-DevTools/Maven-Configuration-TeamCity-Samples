@@ -1,0 +1,25 @@
+name: MavenConfigurationTeamCitySamples_Build
+
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        run: |
+          git clone https://github.com/JetBrains/Maven-Configuration-TeamCity-Samples.git .
+          git checkout master
+
+      - name: Maven Build
+        run: |
+          mvn clean test -f ch-simple/pom.xml -Dmaven.test.failure.ignore=true
+
+      - name: CLI Step
+        run: |
+          echo "This is example repo"
