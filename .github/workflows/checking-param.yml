@@ -3,7 +3,7 @@ name: HelloWorldBuild Migration
 on:
   push:
     branches: [ main ]
-  workflow_dispatch: # Standard: Allows you to click "Run" manually in GitHub UI
+  workflow_dispatch:
 
 env:
   MY_ENV_VAR: "TeamCity(env-var)"
@@ -18,12 +18,10 @@ jobs:
 
       - name: Print Config Parameter
         env:
-          NAME_PARAM: "TeamCity(config-par)" 
-        # Using bash explicitly is a "best practice" for self-hosted runners
+          NAME_PARAM: "TeamCity(config-par)"
         shell: bash
         run: echo "Hello, $NAME_PARAM"
 
       - name: Print Environment Variable
         shell: bash
-        # Standard way to reference the 'env' context
         run: echo "Environment variable is: ${{ env.MY_ENV_VAR }}"
